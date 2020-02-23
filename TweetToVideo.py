@@ -7,6 +7,7 @@ import ffmpeg
 from PIL import Image
 from PIL import ImageDraw
 import os
+import ffmpeg
 import glob
 
 class VideoSummary:
@@ -31,9 +32,9 @@ class VideoSummary:
     # Block until all tasks are done
     self.que.join()
     print('Job is Finished!!!')
-    for i in range(num_worker_threads):
+    for i in range(self.thread_amount):
         self.que.put(None)
-    for t in threads:
+    for t in self.threads:
         t.join()
 
   # Process the calls
