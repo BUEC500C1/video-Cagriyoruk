@@ -1,0 +1,10 @@
+tweepy
+queue
+multiprocessing
+threading
+configparser
+ffmpeg
+PIL
+os
+ffmpeg
+glob
