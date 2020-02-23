@@ -46,6 +46,7 @@ class VideoSummary:
         break
       self.getTweets(element)
       self.que.task_done()
+      print('Task Done!!!')
 
   # Start the authentication process
   def authentication(self,path):
@@ -91,9 +92,3 @@ class VideoSummary:
     fileName = os.getcwd() + '/' + user_handle + '_tweets/' + '*.png'
     videoName = 'VideoSummary/' + user_handle + '_daliy.mp4'
     ffmpeg.input(fileName, pattern_type = 'glob', framerate = 0.3).output(videoName).run()
-
-def main():
-  letsPlay = VideoSummary('keys',['cagri_yoruk','elonmusk','goodfellow_ian'])
-
-if __name__ == '__main__':
-  main()
