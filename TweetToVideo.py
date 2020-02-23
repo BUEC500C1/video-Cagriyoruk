@@ -14,6 +14,7 @@ class VideoSummary:
 
   # Initialize the Object
   def __init__(self,path, process_list):
+    self.process_list = process_list
     self.api = self.authentication(path)
     self.que = queue.Queue()
     self.threads = []
@@ -30,8 +31,8 @@ class VideoSummary:
       t.daemon = True
       t.start()
     # Block until all tasks are done
-    self.que.join()
     print('Job is Finished!!!')
+    self.que.join()
     for i in range(self.thread_amount):
         self.que.put(None)
     for t in self.threads:
@@ -46,7 +47,7 @@ class VideoSummary:
         break
       self.getTweets(element)
       self.que.task_done()
-      print('Task Done!!!')
+      print('Processing the ' + str(self.process_list.index(element) + 1) + ' element out of ' + str(len(self.process_list)) + ' items')
 
   # Start the authentication process
   def authentication(self,path):
@@ -63,7 +64,7 @@ class VideoSummary:
   def getTweets(self,user_handle):
     counter = 0
     tweet_list = []
-    tweets = self.api.home_timeline(id = user_handle, count = 30)
+    tweets = self.api.user_timeline(id = user_handle, count = 30)
     for tweet in reversed(tweets):
       for character in tweet.text:
         if ord(character) > 256:
@@ -94,7 +95,7 @@ class VideoSummary:
     ffmpeg.input(fileName, pattern_type = 'glob', framerate = 0.3).output(videoName).run()
 
 def main():
-  letsPlay = VideoSummary('keys',['cagri_yoruk','elonmusk','goodfellow_ian'])
+  letsPlay = VideoSummary('keys',['lexfridman','jomaoppa','elonmusk'])
 
 if __name__ == '__main__':
   main()
