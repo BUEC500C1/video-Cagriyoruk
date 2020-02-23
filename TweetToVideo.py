@@ -7,7 +7,6 @@ import ffmpeg
 from PIL import Image
 from PIL import ImageDraw
 import os
-import ffmpeg
 import glob
 
 class VideoSummary:
