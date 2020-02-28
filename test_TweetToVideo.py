@@ -1,5 +1,5 @@
 import pytest
-from step_1 import *
+from TweetToVideo import *
 
 def test_TTV():
   assert VideoSummary('eys',['lexfridman']) != None
