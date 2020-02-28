@@ -7,7 +7,9 @@ import ffmpeg
 from PIL import Image
 from PIL import ImageDraw
 import os
+import ffmpeg
 import glob
+import json
 
 class VideoSummary:
 
@@ -19,7 +21,6 @@ class VideoSummary:
     self.threads = []
     self.thread_amount = 4
     self.threadProcess(process_list)
-
 
   # Get the API Calls
   def threadProcess(self, process_list):
@@ -50,27 +51,44 @@ class VideoSummary:
 
   # Start the authentication process
   def authentication(self,path):
-    config = configparser.ConfigParser()
-    config.read(path)
-    auth = tweepy.OAuthHandler(config.get('auth', 'consumer_key').strip(),
-                               config.get('auth', 'consumer_secret').strip())
-    auth.set_access_token(config.get('auth', 'access_token').strip(),
-                          config.get('auth', 'access_secret').strip())
-    api = tweepy.API(auth)
+    if not os.path.exists(path):
+      return None
+    else:   
+      config = configparser.ConfigParser()
+      config.read(path)
+      auth = tweepy.OAuthHandler(config.get('auth', 'consumer_key').strip(),
+                                 config.get('auth', 'consumer_secret').strip())
+      auth.set_access_token(config.get('auth', 'access_token').strip(),
+                            config.get('auth', 'access_secret').strip())
+      api = tweepy.API(auth)
     return api
 
   # Get tweets from a specific user handle
   def getTweets(self,user_handle):
+    temp = {}
     counter = 0
     tweet_list = []
+    if self.api == None:
+      return self.go_stub(user_handle)
     tweets = self.api.user_timeline(id = user_handle, count = 30)
     for tweet in reversed(tweets):
       for character in tweet.text:
         if ord(character) > 256:
           tweet.text = tweet.text.replace(character, " ")
       tweet = tweet.user.name + "\n" + tweet.text 
+      if user_handle in temp:
+        temp[user_handle] += [tweet]
+      else:
+        temp[user_handle] = []
       tweet_list.append(tweet)
+    with open(user_handle, 'w+') as outfile:
+      json.dump(temp, outfile)
     return self.text2Image(tweet_list,counter,user_handle)
+
+  def go_stub(self,user_handle):
+    with open(user_handle) as json_file:
+      data = json.load(json_file)
+      return data[user_handle]
     
   # Parse and convert the text to images
   def text2Image(self,tweet_list,counter,user_handle):
@@ -94,7 +112,7 @@ class VideoSummary:
     ffmpeg.input(fileName, pattern_type = 'glob', framerate = 0.3).output(videoName).run()
 
 def main():
-  letsPlay = VideoSummary('keys',['lexfridman','jomaoppa','elonmusk'])
+  letsPlay = VideoSummary('kys',['lexfridman'])
 
 if __name__ == '__main__':
   main()
