@@ -8,6 +8,18 @@ Using the twitter feed, construct a daily video summarizing a twitter handle day
 
 ## How to Use this API
 
+The API object take 2 input arguments. The first one is the key. And the second one is the list of user_handles that we want to get the twitter feed from. The 'keys' file is the path to the api keys of the twitter.
+
+![](https://github.com/BUEC500C1/video-Cagriyoruk/blob/With_Stub/Screenshots/How_TO.png)
+
+The 'keys' file looks like this:
+
+![](https://github.com/BUEC500C1/video-Cagriyoruk/blob/With_Stub/Screenshots/Auth.png)
+
+The Keys can be obtained through tweepy api. In order to use this API, you need keys.
+
+To be precise, we need to put user_handles in to a list. If we want to check only one person, still we need to put it into a list like ['Cagri_yoruk'].
+
 ## Examples
 ### Frame of a Video
 
