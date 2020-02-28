@@ -10,15 +10,15 @@ Using the twitter feed, construct a daily video summarizing a twitter handle day
 This exercise involves couple different concepts which are:
  * Queue's
  
-![image](https://user-images.githubusercontent.com/55101879/75595723-8948e100-5a5b-11ea-822a-4f07b05317d0.png)
-
- * Multiprocessing and Threading
- 
-![image](https://user-images.githubusercontent.com/55101879/75595802-cc0ab900-5a5b-11ea-8445-a91eb18c6ae6.png)
+  ![image](https://user-images.githubusercontent.com/55101879/75595723-8948e100-5a5b-11ea-822a-4f07b05317d0.png)
 
  * FFMPEG
  
- ![image](https://user-images.githubusercontent.com/55101879/75595853-096f4680-5a5c-11ea-98c5-3fbf6f224d60.png)
+  ![image](https://user-images.githubusercontent.com/55101879/75595853-096f4680-5a5c-11ea-98c5-3fbf6f224d60.png)
+ 
+ * Multiprocessing and Threading
+ 
+  ![image](https://user-images.githubusercontent.com/55101879/75595802-cc0ab900-5a5b-11ea-8445-a91eb18c6ae6.png)
 
 ## How to Use this API
 
