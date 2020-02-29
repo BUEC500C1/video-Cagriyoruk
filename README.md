@@ -5,6 +5,13 @@ Using the twitter feed, construct a daily video summarizing a twitter handle day
   * Convert text into an image in a frame
   * Do a sequence of all texts and images in chronological order.
   * Display each video frame for 3 seconds
+  
+## High Level Intuition of the project
+  * All of the requests go to the Queue. Each element is processed one by one.
+  * Each User handle requests tweets by tweepy api.
+  * The tweets are put in a list. Every tweet is processed and put in an image. In the end of this process every tweet would have unique images belong to the tweets.
+  * After this the images would merge together and create a video. All videos belong to a specific file path called VideoSummary.
+  * In addition to this all user handle will have files belong to the most recent tweets.
 
 ## Exercises
 This exercise involves couple different concepts which are:
@@ -36,6 +43,8 @@ To be precise, we need to put user_handles in to a list. If we want to check onl
 
 ## Input and Output
  * If there are correct authorization keys and path of the key with the correct input like this: VideoSummary('keys',['lexfridman', 'jomaoppa', 'elonmusk']). The API would return files and videos belongs to the user handles. 
+ 
+ * The API would return the most frequent 30 tweets of the user handle as a video. Each user_handle would have a unique video based on their tweets.
  
  * In case of any wrong authorization or wrong path. If the user handle already has a files, the API will return that. The files are created after the succesful runs with the correct keys and path.
 
