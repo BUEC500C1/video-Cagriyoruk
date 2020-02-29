@@ -34,12 +34,17 @@ The Keys can be obtained through tweepy api. In order to use this API, you need 
 
 To be precise, we need to put user_handles in to a list. If we want to check only one person, still we need to put it into a list like ['Cagri_yoruk'].
 
+## Input and Output
+ * If there are correct authorization keys and path of the key with the correct input like this: VideoSummary('keys',['lexfridman', 'jomaoppa', 'elonmusk']). The API would return files and videos belongs to the user handles. 
+ 
+ * In case of any wrong authorization or wrong path. If the user handle already has a files, the API will return that. The files are created after the succesful runs with the correct keys and path.
+
 ## Examples
 ### Frame of a Video
 
 ![](https://github.com/BUEC500C1/video-Cagriyoruk/blob/master/Screenshots/Example.png)
 
-### Processing the Que
+### Processing the Queue
 
 ![](https://github.com/BUEC500C1/video-Cagriyoruk/blob/master/Screenshots/Processing.png)
 
